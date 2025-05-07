@@ -1,7 +1,7 @@
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from datetime import date
-from utils.database import Database
+from ..utils.database import Database
 
 @csrf_exempt
 def check_duplicated_student_id(request):

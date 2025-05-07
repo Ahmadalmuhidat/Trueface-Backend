@@ -3,7 +3,7 @@ import uuid
 from datetime import datetime, date
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
-from utils.database import Database
+from ..utils.database import Database
 
 @csrf_exempt
 def get_current_class_attendance(request):

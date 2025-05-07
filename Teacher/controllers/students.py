@@ -3,7 +3,7 @@ import base64
 from datetime import date
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
-from utils.database import Database
+from ..utils.database import Database
 
 @csrf_exempt
 def get_class_students(request):

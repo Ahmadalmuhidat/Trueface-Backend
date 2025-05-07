@@ -1,7 +1,7 @@
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
-from utils.database import Database
-from helper import json_web_token
+from ..utils.database import Database
+from ..helper import json_web_token
 
 @csrf_exempt
 def get_current_teacher_classes(request):

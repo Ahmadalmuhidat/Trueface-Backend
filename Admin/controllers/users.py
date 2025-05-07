@@ -1,8 +1,8 @@
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from datetime import datetime, timedelta
-from utils.database import Database
-from helper import json_web_token
+from ..utils.database import Database
+from ..helper import json_web_token
 
 @csrf_exempt
 def insert_user(request):
