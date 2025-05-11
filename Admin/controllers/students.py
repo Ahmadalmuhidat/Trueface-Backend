@@ -79,7 +79,7 @@ def insert_student(request):
       middle_name = request.POST.get('middle_name')
       last_name = request.POST.get('last_name')
       gender = request.POST.get('gender')
-      student_face_encode = request.POST.get('student_face_encode')
+      student_face_encode = request.POST.get('face_encode')
 
       data = [
         student_id,
@@ -119,17 +119,20 @@ def insert_student(request):
 def remove_student(request):
   if request.method == "POST":
     try:
-      
       student_id = request.POST.get('student_id')
       data = [student_id]
+
+      # remove the student
       query = '''
         DELETE FROM
-          ClassStudentRelation
+          Students
         WHERE
-          Student = %s
+          ID = %s
       '''
+      remove_the_student = Database.execute_post_query(query, data)
 
-      if Database.execute_post_query(query, data):
+      if remove_the_student:
+        # remove the student from the classes
         query = '''
           DELETE FROM
             ClassStudentRelation
@@ -141,6 +144,8 @@ def remove_student(request):
           "status_code": 200,
           "data": True
         })
+      else:
+        return JsonResponse({"error": "error while removing the student"}, status=500)
     except Exception as e:
       return JsonResponse({"error": str(e)}, status=500)
   return JsonResponse({
