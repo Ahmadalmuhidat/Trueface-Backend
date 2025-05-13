@@ -22,7 +22,7 @@ def get_current_class_attendance(request):
       LEFT JOIN
         Students
       ON
-        Attendance.Students = Students.ID
+        Attendance.Student = Students.ID
       WHERE
         Attendance.Class = %s AND Attendance.Date = %s
     '''
@@ -73,7 +73,7 @@ def check_attendance(request):
       FROM
         Attendance
       WHERE
-        AttendanceDate = %s
+        Date = %s
       AND
         Student = %s
       AND
@@ -109,7 +109,7 @@ def insert_attendance(request):
         %s
       )
     '''
-    return JsonResponse({"status_code": 200, "data": Database.ExecutePostQuery(query, data)})
+    return JsonResponse({"status_code": 200, "data": Database.ExecuteGetQuery(query, data)})
   return JsonResponse({
     "status_code": 405,
     "error": "Method not allowed"
